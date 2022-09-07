@@ -21,11 +21,8 @@ services:
       - MOODLE_DATABASE_NAME=moodle_4.0
       - MOODLE_DATABASE_USER=moodle
       - MOODLE_DATABASE_PASSWORD=moodle
-      - MOODLE_SMTP_HOST=localhost
+      - MOODLE_SMTP_HOST=mailhog
       - MOODLE_SMTP_PORT=1025
-      #- MOODLE_SMTP_USER=
-      #- MOODLE_SMTP_PASSWORD=
-      #- MOODLE_SMTP_PROTOCOL=tls
   moodle_38:
     build:
       context: './build/php'
@@ -46,11 +43,8 @@ services:
       - MOODLE_DATABASE_NAME=moodle_3.8
       - MOODLE_DATABASE_USER=moodle
       - MOODLE_DATABASE_PASSWORD=moodle
-      - MOODLE_SMTP_HOST=localhost
+      - MOODLE_SMTP_HOST=mailhog
       - MOODLE_SMTP_PORT=1025
-      #- MOODLE_SMTP_USER=
-      #- MOODLE_SMTP_PASSWORD=
-      #- MOODLE_SMTP_PROTOCOL=tls
   phpmyadmin:
     restart: always
     ports:
