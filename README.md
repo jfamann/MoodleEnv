@@ -18,7 +18,7 @@ __- Arborescence du projet__
     - moodle_4.0
         - src (code Moodle 4.0)
         - data
-    docker-compose
+    docker-compose.yml
 
 ----------------
 
