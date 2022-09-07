@@ -4,7 +4,7 @@ FROM php:8.0-apache
 COPY php.ini /usr/local/etc/php/php.ini
 
 # Virtual Host settings
-COPY 000-default-80.conf /etc/apache2/sites-available/000-default.conf
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y \
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get upgrade -y && \
 RUN docker-php-ext-install mysqli \
     pdo pdo_mysql \
     zip \
-#    xmlrpc \
+#    xmlrpc \ does not exist for apache-php 8
     opcache \
     gd \
     intl \

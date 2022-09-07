@@ -4,7 +4,7 @@ FROM php:7.4-apache
 COPY php.ini /usr/local/etc/php/php.ini
 
 # Virtual Host settings
-COPY 000-default-74.conf /etc/apache2/sites-available/000-default.conf
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y \

@@ -32,7 +32,7 @@ services:
       - db
       - mailhog
     ports:
-      - 80:80
+      - 838:80
     volumes:
       - ./moodle_3.8/src:/var/www/public
       - ./moodle_3.8/data:/var/www/moodledata

@@ -9,8 +9,8 @@
         - php
             - Dockerfile.74
             - Dockerfile.80
-            - 000-default-74.conf
-            - 000-default-80.conf
+            - 000-default.conf
+            - php.ini
     - dbData (persistance des données MySQL)
     - moodle_3.8
         - src (code Moodle 3.8)
@@ -43,16 +43,15 @@
 
 ## - Construction d'une plateforme de DEV pour Moodle
 
-    PHP-apache 7.4 pour Moodle 3.8
+    Container : PHP-apache 7.4 pour Moodle 3.8
         Dockerfile -> build\php\DockerFile.74
-    PHP-apache 8.0 pour Moodle 4.0
+    Container : PHP-apache 8.0 pour Moodle 4.0
         Dockerfile -> build\php\DockerFile.80
-    PHPMyadmin
-    MySQL
+    Container : PHPMyadmin
+    MySQL (MySQL va utiliser le répertoire /dbData pour persister ses données)
         Dockerfile -> build\mysql\DockerFile
         + my.cnf
-        MySQL va utiliser le répertoire /dbData pour persister ses données
-    Mailhog (SMTP server)
+    Container : Mailhog (SMTP server)
 
 ----------------
 
