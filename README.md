@@ -1,6 +1,6 @@
 # MoodleEnv
 
-__- Arborescence du projet__
+## - Arborescence du projet
 
     - build
         - mysql
@@ -22,14 +22,14 @@ __- Arborescence du projet__
 
 ----------------
 
-__- Import du code source Moodle (https://github.com/moodle/moodle.git)__
+## - Import du code source Moodle (https://github.com/moodle/moodle.git)
 
     1/ Importer le code source Moodle 3.8 (branche 3.8) dans moodle_3.8\src
     2/ Importer le code source Moodle 4.0 (branche 3.8) dans moodle_4.0\src
 
 ----------------
 
-__- Initialiser la DB MySQL__
+## - Initialiser la DB MySQL
 
     1/Créer un user moodle -> mdp: moodle
 
@@ -41,7 +41,7 @@ __- Initialiser la DB MySQL__
 
 ----------------
 
-__- Construction d'une plateforme de DEV pour Moodle__
+## - Construction d'une plateforme de DEV pour Moodle
 
     PHP-apache 7.4 pour Moodle 3.8
         Dockerfile -> build\php\DockerFile.74
@@ -56,7 +56,7 @@ __- Construction d'une plateforme de DEV pour Moodle__
 
 ----------------
 
-__- Utiliser le docker-compose à la racine du projet pour contruire les images + containers__
+## - Utiliser le docker-compose à la racine du projet pour contruire les images + containers
 
     -> docker compose up
 
