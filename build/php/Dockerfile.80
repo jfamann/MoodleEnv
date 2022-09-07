@@ -1,0 +1,23 @@
+FROM php:8.0-apache
+
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y \
+        libzip-dev \
+        zip \
+        libxml2-dev \
+        libpng-dev
+
+#RUN docker-php-ext-install mysqli pdo pdo_mysql zip xmlrpc opcache gd intl soap && \
+#    docker-php-ext-enable opcache && \
+#    docker-php-ext-configure gd
+
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY 000-default-80.conf /etc/apache2/sites-available/000-default.conf
+
+RUN a2enmod rewrite
+
+EXPOSE 840
+
+

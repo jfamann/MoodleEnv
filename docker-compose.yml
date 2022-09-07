@@ -1,0 +1,89 @@
+version: "3.9"
+services:
+  moodle_40:
+    build:
+      context: './build/php'
+      dockerfile: Dockerfile.80
+    container_name: moodle_inap_4.0
+    depends_on:
+      - db
+      - mailhog
+      - moodle_38
+    ports:
+      - 840:80
+    volumes:
+      - ./moodle_4.0/src:/var/www/public
+      - ./moodle_4.0/data:/var/www/moodledata
+    environment:
+      - APP_DEBUG=true
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
+      - MOODLE_DATABASE_NAME=moodle_4.0
+      - MOODLE_DATABASE_USER=moodle
+      - MOODLE_DATABASE_PASSWORD=moodle
+      - MOODLE_SMTP_HOST=localhost
+      - MOODLE_SMTP_PORT=1025
+      #- MOODLE_SMTP_USER=
+      #- MOODLE_SMTP_PASSWORD=
+      #- MOODLE_SMTP_PROTOCOL=tls
+  moodle_38:
+    build:
+      context: './build/php'
+      dockerfile: Dockerfile.74
+    container_name: moodle_inap_3.8
+    depends_on:
+      - db
+      - mailhog
+    ports:
+      - 80:80
+    volumes:
+      - ./moodle_3.8/src:/var/www/public
+      - ./moodle_3.8/data:/var/www/moodledata
+    environment:
+      - APP_DEBUG=true
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
+      - MOODLE_DATABASE_NAME=moodle_3.8
+      - MOODLE_DATABASE_USER=moodle
+      - MOODLE_DATABASE_PASSWORD=moodle
+      - MOODLE_SMTP_HOST=localhost
+      - MOODLE_SMTP_PORT=1025
+      #- MOODLE_SMTP_USER=
+      #- MOODLE_SMTP_PASSWORD=
+      #- MOODLE_SMTP_PROTOCOL=tls
+  phpmyadmin:
+    restart: always
+    ports:
+      - 8080:80
+    image: phpmyadmin
+    container_name: phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_ARBITRARY: 1
+      #PMA_HOST: localhost
+      PMA_USER: root
+      PMA_PASSWORD: root
+      #UPLOAD_LIMIT: 20M
+  db:
+    build: './build/mysql'
+    container_name: mysql8
+    restart: always
+    #command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: moodle
+      MYSQL_PASSWORD: moodle
+    ports:
+      - 4306:3306
+      - 43060:33060
+    volumes:           
+      - ./dbData:/var/lib/mysql      
+  mailhog:
+      image: mailhog/mailhog
+      container_name: 'mailhog'
+      ports:
+        - "1025:1025"
+        - "8025:8025"
+volumes:
+  dbData:
